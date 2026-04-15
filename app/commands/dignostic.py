@@ -61,7 +61,7 @@ def security_command() ->str:
     connections = psutil.net_connections(kind = "inet")
     suspicious_port = [conn for conn in connections if hasattr(conn, "laddr") and conn.laddr.port > 49152]
 
-    result += f"🕵️‍♂️ Port suspects (>49152): {len(suspicious_port)}\n"
+    result += f"🥸​ Port suspects (>49152): {len(suspicious_port)}\n"
 
     result += "\n"
 
