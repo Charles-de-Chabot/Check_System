@@ -77,9 +77,9 @@ COMMANDS_CATEGORIES = {
 # messages personnalisés 
 MESSAGES = {
     "welcome": "👋​ Bienvenue sur Check System",
-    "error_permission": "​❌​ Permission refusé. Droit admin requis",
-    "error_not_found": "​❌​ Ressource non trouvé",
-    "error_invalid_command": "​❌​ Commande invalide. Tapez 'help' pour l'aide",
-    "succes_kill": "✔️ processus arrêté avec succès",
+    "error_permission": "​📛​​ Permission refusé. Droit admin requis",
+    "error_not_found": "​📛​ Ressource non trouvé",
+    "error_invalid_command": "​📛​​ Commande invalide. Tapez 'help' pour l'aide",
+    "succes_kill": "🎆​​ processus arrêté avec succès",
     "info_no_battery": "​​🔌​ Pas de batterie détecté (PC de bureau)"
 }

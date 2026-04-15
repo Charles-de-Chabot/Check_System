@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request
 
-from ..services.commande_service import execute_command
+from ..services.command_service import execute_command
 
 web_blueprint = Blueprint("web", __name__)
 
