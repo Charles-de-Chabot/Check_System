@@ -10,23 +10,23 @@ from .monitoring import (
     uptime_command
 )
 
-from .network import network_command, ping_command, port_command
+from .network import network_command, ping_command, ports_command
 
-from .process import kill_command, processes_command, services_command
+from .process import kill_command, process_command, services_command
 
 STATIC_COMMAND = {
     "cpu": cpu_command,
     "ram": ram_command,
     "espace": disk_space_command,
     "uptime": uptime_command,
-    "processus": processes_command,
+    "processus": process_command,
     "network": network_command,
     "temp": temperature_command,
     "users": users_command,
     "battery": battery_command,
     "sysinfo": system_info_command,
     "dashboard": dashboard_command,
-    "ports": port_command,
+    "ports": ports_command,
     "services": services_command,
     "security": security_command,
     "logs": logs_command,
