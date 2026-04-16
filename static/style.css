@@ -47,7 +47,7 @@ body::before {
 
 .container {
   width: 100%;
-  max-width: 900px;
+  max-width: 950px;
   position: relative;
   z-index: 1;
 }

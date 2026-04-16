@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Check System</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='geek.jpg') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='geek.png') }}" type="image/x-icon">
 </head>
 <body>
     <div class="container">
@@ -51,7 +51,70 @@
         </div>
         <!-- Vue Commande -->
         <div id="commandsView">
-            <h2>Commandes</h2>
+            <!-- Filtre de Catégories -->
+            <div class="filter-bar">
+                <button class="filter-btn active" onclick="filterCommands('all', this)">🤹‍♀️​ Toutes</button>
+                <button class="filter-btn" onclick="filterCommands('Monitoring', this)">📊 Monitoring</button>
+                <button class="filter-btn" onclick="filterCommands('network', this)">🌐 Réseau</button>
+                <button class="filter-btn" onclick="filterCommands('process', this)">🔄 Processus</button>
+                <button class="filter-btn" onclick="filterCommands('security', this)">🔐 Sécurité</button>
+                <button class="filter-btn" onclick="filterCommands('diagnostic', this)">📈 Diagnostique</button>
+            </div>
+            <!-- Commande organisées par catégory -->
+            <div class="command-card">
+                <div class="card-title">
+                    <span>📋​ Commandes Rapides</span>
+                    <button class="btn-secondary" onclick="toggleCommandList()">
+                        <span id="toggleIcon">🔻</span>
+                    </button>
+                </div>
+                <div class="commands-grid" id="commandsGrid">
+                    <!-- Monitoring -->
+                    <div class="command-item" data-category="monitoring" onclick="executeCommand('cpu')">
+                        <span class="cmd-name">⚙️ CPU</span>
+                        <span class="cmd-desc">Utilisation détaillée CPU</span>
+                    </div>
+                    <div class="command-item" data-category="monitoring" onclick="executeCommand('ram')">
+                        <span class="cmd-name">🏎️ RAM</span>
+                        <span class="cmd-desc">Mémoir RAM complète</span>
+                    </div>
+                    <div class="command-item" data-category="monitoring" onclick="executeCommand('espace')">
+                        <span class="cmd-name">💽 ESPACE</span>
+                        <span class="cmd-desc">Utilisation des DISK</span>
+                    </div>
+                    <div class="command-item" data-category="monitoring" onclick="executeCommand('dashboard')">
+                        <span class="cmd-name">📊 DASHBOARD</span>
+                        <span class="cmd-desc">Vue d'ensemble système</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Console avec historique -->
+            <div class="command-card">
+                <div class="card-title">
+                    <span>Console de commnde</span>
+                    <div class="console-actions">
+                        <button class="btn-icon" onclick="clearHistory()" title="Effacer l'historique">🗑️​</button>
+                        <button class="btn-icon" onclick="exportResults()" title="Exporter les résultats">💾</button>
+                        <button class="btn-icon" onclick="copyLastResult()" title="Copier le dernier résultat">📋</button>
+                    </div>
+                </div>
+                <form method="post" id="commandForm">
+                    <div class="input-wrapper">
+                        <input type="text" 
+                        name="cmd" id="cmdInput" 
+                        placeholder="Tapez une commande" 
+                        value="{{ command }}" 
+                        autocomplete="off"
+                        list="commandHistory">
+                        <datalist id="commandHistory"></datalist>
+                    </div>
+                    <button type="submit" id="executeBtn">
+                        <span id="btnText">Exécuter</span>
+                        <span class="shortcut">Ctrl + ↵</span>
+                    </button>
+                </form>
+                <div class="command-hinds" id="hinds"></div>
+            </div>
         </div>
         
     </div>
