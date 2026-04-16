@@ -86,6 +86,70 @@
                         <span class="cmd-name">📊 DASHBOARD</span>
                         <span class="cmd-desc">Vue d'ensemble système</span>
                     </div>
+                    <!-- Réseau -->
+                    <div class="command-item" data-category="network" onclick="fillPingCommand()">
+                        <span class="cmd-name">📡 PING</span>
+                        <span class="cmd-desc">Test de connectivité réseau</span>
+                    </div>
+                    <div class="command-item" data-category="network" onclick="executeCommand('network')">
+                        <span class="cmd-name">​🌐​ NETWORK</span>
+                        <span class="cmd-desc">Info & Stat Réseau</span>
+                    </div>
+                    <div class="command-item" data-category="network" onclick="executeCommand('ports')">
+                        <span class="cmd-name">​🔌 PORTS</span>
+                        <span class="cmd-desc">Port TCP/UDP actifs</span>
+                    </div>
+                    <!-- Processus -->
+                    <div class="command-item" data-category="process" onclick="executeCommand('processus')">
+                        <span class="cmd-name">​🔄 PROCESSUS</span>
+                        <span class="cmd-desc">Top 10 processus</span>
+                    </div>
+                    <div class="command-item" data-category="process" onclick="executeCommand('services')">
+                        <span class="cmd-name">​⚡ SERVICES</span>
+                        <span class="cmd-desc">Service système actifs</span>
+                    </div>
+                    <div class="command-item" data-category="process" onclick="fillKillCommand">
+                        <span class="cmd-name">​❌​ KILL</span>
+                        <span class="cmd-desc">Arrêter un processus</span>
+                    </div>
+                    <!-- Sécurité -->
+                    <div class="command-item" data-category="process" onclick="executeCommand('users')">
+                        <span class="cmd-name">​​🫂​ USERS</span>
+                        <span class="cmd-desc">Utilisateur connectés</span>
+                    </div>
+                    <div class="command-item" data-category="process" onclick="executeCommand('security')">
+                        <span class="cmd-name">​​🔐​​ SECURITY</span>
+                        <span class="cmd-desc">Audit de sécurité</span>
+                    </div>
+                    <div class="command-item" data-category="process" onclick="executeCommand('logs')">
+                        <span class="cmd-name">​​📜​ LOGS</span>
+                        <span class="cmd-desc">Dernires logs système</span>
+                    </div>
+                    <!-- Diagnostic -->
+                    <div class="command-item" data-category="dignostic" onclick="executeCommand('sysinfo')">
+                        <span class="cmd-name">​​💻​ SYSTEME INFO</span>
+                        <span class="cmd-desc">Information systeme</span>
+                    </div>
+                    <div class="command-item" data-category="dignostic" onclick="executeCommand('uptime')">
+                        <span class="cmd-name">​​🕛​ UP TIME</span>
+                        <span class="cmd-desc">Durée d'activité</span>
+                    </div>
+                    <div class="command-item" data-category="dignostic" onclick="executeCommand('temp')">
+                        <span class="cmd-name">​​🌡️​ TEMPERATURE</span>
+                        <span class="cmd-desc">Température en °C</span>
+                    </div>
+                    <div class="command-item" data-category="dignostic" onclick="executeCommand('health')">
+                        <span class="cmd-name">​​👩🏻‍⚕️​ SANTE</span>
+                        <span class="cmd-desc">Santé système globale</span>
+                    </div>
+                    <div class="command-item" data-category="dignostic" onclick="executeCommand('battery')">
+                        <span class="cmd-name">​​🔋 BATTERIE</span>
+                        <span class="cmd-desc">Etat de la santé</span>
+                    </div>
+                    <div class="command-item" data-category="dignostic" onclick="executeCommand('help')">
+                        <span class="cmd-name">​​🆘​ HELP</span>
+                        <span class="cmd-desc">Liste des commandes disponible</span>
+                    </div>
                 </div>
             </div>
             <!-- Console avec historique -->
@@ -120,7 +184,7 @@
                 <div class="result-card" id="resultCard">
                     <div class="result-header">
                         <div class="result-title-group">
-                            <span class="result-title">📟 {{ command|upper }}</span>
+                            <span class="result-title">{{ command|upper }}</span>
                             <span class="execution-time" id="execTime"></span>
                         </div>
                         <div class="result-actions">

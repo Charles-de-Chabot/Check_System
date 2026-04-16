@@ -10,7 +10,7 @@ def ping_command(cmd: str) ->str:
     result = subprocess.run(
         ["ping", param, str(Config.PING_COUNT), host],
         capture_output=True,
-        test=True,
+        text=True,
         encoding=encoding
     )
     return result.stdout

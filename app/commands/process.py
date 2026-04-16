@@ -16,14 +16,14 @@ def process_command() ->str:
     result += "=" * 60 + "\n"
     for proc in processes:
         result += (
-            f"{proc['pid']:<8 {proc['cpu_percent'] or 0:<8.1f}}"
+            f"{proc['pid']:<8} {proc['cpu_percent'] or 0:<8.1f}"
             f"{proc['memory_percent'] or 0:<8.1f} {proc['name']}\n"
         )
     return result 
 
 def services_command() ->str: 
     result = "⚡​ Service Système Actifs:\n\n"
-    result += f"{'PID':<8} {'Statut':<10} {'RAM%':<8} {'Nom'}"
+    result += f"{'PID':<8} {'Statut':<10} {'RAM%':<8} {'Nom'}\n"
     result += "=" * 70 + "\n"
     
     services = []
@@ -33,9 +33,9 @@ def services_command() ->str:
         except Exception:
             pass
 
-    services = sorted(services, key=lambda item: item['memory_percent'] or 0, reverse=True) [Config.MAX_SERVICES_DISPLAY]
+    services = sorted(services, key=lambda item: item['memory_percent'] or 0, reverse=True) [:Config.MAX_SERVICES_DISPLAY]
     for service in services:
-        status = service[status][:8] if service['status'] else "N/A"
+        status = service['status'][:8] if service['status'] else "N/A"
         result += (
             f"{service['pid']:<8} {status:<10}"
             f"{service['memory_percent'] or 0:<8.2f} {service['name']}\n"

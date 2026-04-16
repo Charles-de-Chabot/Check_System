@@ -85,7 +85,7 @@ def security_command() ->str:
         result += "  🎆 Utilisation normal du CPU"
 
     mem = psutil.virtual_memory()
-    if mem > 85:
+    if mem.percent > 85:
         result += "  ⚠️ Mémoire RAM Critique\n"
     else:
         result += "  🎆 Mémoire RAM Normal\n"

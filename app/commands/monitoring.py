@@ -22,7 +22,7 @@ def cpu_command() -> str:
 def ram_command() -> str:
     mem = psutil.virtual_memory()
     return (
-        f"🧠 RAM Utilisée: {mem.percent}%\n"
+        f"🏎️ RAM Utilisée: {mem.percent}%\n"
         f"   {build_progress_bar(mem.percent)}\n\n"
         f"   Total: {to_gb(mem.total)} Go\n"
         f"   Utilisé: {to_gb(mem.used)} Go\n"
@@ -93,7 +93,7 @@ def dashboard_command() -> str:
     result += "📊 RESSOURCES:\n"
     result += "─" * 60 + "\n"
     result += f"⚙️  CPU:    {build_progress_bar(cpu)} {cpu}%\n"
-    result += f"🧠 RAM:    {build_progress_bar(mem.percent)} {mem.percent}% ({to_gb(mem.used)}/{to_gb(mem.total)} Go)\n"
+    result += f"🏎️ RAM:    {build_progress_bar(mem.percent)} {mem.percent}% ({to_gb(mem.used)}/{to_gb(mem.total)} Go)\n"
     result += f"💾 Disque: {build_progress_bar(disk.percent)} {disk.percent}% ({to_gb(disk.used)}/{to_gb(disk.total)} Go)\n\n"
 
     processes = []
@@ -143,13 +143,13 @@ def health_command() -> str:
     if mem.percent > Config.RAM_CRITICAL_THRESHOLD:
         health_score -= Config.HEALTH_PENALTY_RAM_CRITICAL
         warnings.append("⚠️  Mémoire critique (>90%)")
-        result += f"🧠 RAM: ❌ CRITIQUE ({mem.percent}%)\n"
+        result += f"🏎️ RAM: ❌ CRITIQUE ({mem.percent}%)\n"
     elif mem.percent > Config.RAM_WARNING_THRESHOLD:
         health_score -= Config.HEALTH_PENALTY_RAM_HIGH
         warnings.append("⚠️  Mémoire élevée (>75%)")
-        result += f"🧠 RAM: ⚠️  ÉLEVÉ ({mem.percent}%)\n"
+        result += f"🏎️ RAM: ⚠️  ÉLEVÉ ({mem.percent}%)\n"
     else:
-        result += f"🧠 RAM: ✅ NORMAL ({mem.percent}%)\n"
+        result += f"🏎️ RAM: ✅ NORMAL ({mem.percent}%)\n"
 
     disk_path = "C:\\" if platform.system() == "Windows" else "/"
     disk = psutil.disk_usage(disk_path)

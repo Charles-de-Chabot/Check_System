@@ -71,4 +71,5 @@ def help_command() -> str:
         "  • Ctrl+Enter pour exécuter, Ctrl+K pour effacer\n"
         "  • Flèches ↑↓ pour naviguer dans l'historique\n"
         "  • Cliquez sur 📋 pour copier les résultats"
+        
     )
