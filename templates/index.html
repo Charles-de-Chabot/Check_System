@@ -9,11 +9,12 @@
 </head>
 <body>
     <div class="container">
+        <!-- Header avec Stats en temps réel -->
         <header>
             <div class="header-content">
                 <div class="title-section">
                     <h1>⚡Check System</h1>
-                    <p class="subtitle">​Monitorng et Administration Système</p>
+                    <p class="subtitle">Monitorng et Administration Système</p>
                 </div>
                 <div class="quick-stats" id="quickStats">
                     <div class="stat-item">
@@ -34,6 +35,25 @@
                 </div>
             </div>
         </header>
+        <!-- Mode toggle -->
+        <div class="view-toggle">
+            <button class="toggle-btn active" onclick="switchView('commands')" id="btnCommands">
+                ​⌨️​ Commande
+            </button>
+
+            <button class="toggle-btn" onclick="switchView('live')" id="btnLive">
+                📊​ Monitoring Live
+            </button>
+        </div>
+        <!-- Vue Monitoring live -->
+        <div id="liveView" style="display: none">
+            <h2>Live</h2>
+        </div>
+        <!-- Vue Commande -->
+        <div id="commandsView">
+            <h2>Commandes</h2>
+        </div>
+        
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

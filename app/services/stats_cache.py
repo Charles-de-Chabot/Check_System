@@ -3,7 +3,7 @@ import psutil
 from config import Config
 from .system_metrics import get_primary_disk_path
 
-_last_stats = {"cpu":0, "ram":0, "time":0}
+_last_stats = {"cpu":0, "ram":0, "disk":0, "time":0}
 
 def get_quick_stats() -> dict:
     current_time = time.time()
