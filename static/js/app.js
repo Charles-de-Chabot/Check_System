@@ -1,5 +1,7 @@
 //VARIABLES
 let isCommandListVisible = true;
+let commandHistory = JSON.parse(localStorage.getItem("cmdHistory") || "[]");
+let historyIndex = -1;
 
 document.addEventListener("DOMContentLoaded", function(){
     loadQuickStats();
@@ -86,20 +88,67 @@ function toggleCommandList(){
 function executeCommand(cmd){
     saveToHistory(cmd)
     document.getElementById("cmdInput").value = cmd
-    document.getElementById("commandForm").onsubmit();
+    document.getElementById("commandForm").submit();
 }
 function saveToHistory(cmd){
-
+    if (cmd && !commandHistory.includes(cmd)){
+        commandHistory.unshift(cmd); // unshift: ajoute un élément a la première place du tableau
+        if (commandHistory.length > 50){
+            commandHistory.pop() // pop: supprime le dernier élément du tableau
+        }
+    }
+    localStorage.setItem("cmdHistory", JSON.stringify(commandHistory))
 }
 
 function clearHistory(){
-
+    if (confirm("Effacer tout l'historique de commande?")){
+        commandHistory = [];
+        localStorage.removeItem("cmdHistory");
+        document.getElementById("commandHistory").innerHTML = ""
+        alert("✔️ Historique effacé")
+    }
 }
 
 function exportResults(){
-
+    downloadResult();
 }
 
 function copyLastResult(){
-
+    const result = document.getElementById("resultContent");
+    if (result){
+        copyResult();
+    }else{
+        showNotification("⚠️​ Aucun réultat à copier")
+    }
 }
+
+function copyResult(){
+    const text = document.getElementById("resultContent").textContent
+    navigator.clipboard.writeText(text).then(() => {
+        showNotification("✔️ Résultat copié dans le presse-papier")
+    })
+}
+
+function downloadResult(){
+    const text = document.getElementById("resultContent").textContent;
+    const blob = new Blob([text], {type: "text/plain"});
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `check_system_${new Date().getTime()}.txt`;
+    link.click();
+    showNotification("💾 Résultat téléchargé")
+}
+
+function showNotification(message){
+    const notif = document.createElement("div");
+    notif.className = "notification";
+    notif.textContent = message;
+    document.body.appendChild(notif);
+    setTimeout(() => notif.classList.add("show"), 10);
+    setTimeout(() => {
+        notif.classList.remove("show");
+        setTimeout(() => notif.remove(), 300);
+    }, 2000)
+}
+

@@ -91,7 +91,7 @@
             <!-- Console avec historique -->
             <div class="command-card">
                 <div class="card-title">
-                    <span>Console de commnde</span>
+                    <span>Console de commande</span>
                     <div class="console-actions">
                         <button class="btn-icon" onclick="clearHistory()" title="Effacer l'historique">🗑️​</button>
                         <button class="btn-icon" onclick="exportResults()" title="Exporter les résultats">💾</button>
@@ -115,6 +115,23 @@
                 </form>
                 <div class="command-hinds" id="hinds"></div>
             </div>
+            <!-- Résultat avec timing -->
+            {% if result %}
+                <div class="result-card" id="resultCard">
+                    <div class="result-header">
+                        <div class="result-title-group">
+                            <span class="result-title">📟 {{ command|upper }}</span>
+                            <span class="execution-time" id="execTime"></span>
+                        </div>
+                        <div class="result-actions">
+                            <button class="btn-icon" onclick="copyResult()" title="Copier">📋</button>
+                            <button class="btn-icon" onclick="downloadResult()" title="Téléchargé">💾</button>
+                            <span class="status-indicator"></span>
+                        </div>
+                    </div>
+                    <pre id="resultContent">{{ result }}</pre>
+                </div>
+            {% endif %}
         </div>
         
     </div>
