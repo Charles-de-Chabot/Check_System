@@ -47,7 +47,60 @@
         </div>
         <!-- Vue Monitoring live -->
         <div id="liveView" style="display: none">
-            <h2>Live</h2>
+            <div class="live-monitoring">
+                <div class="monitoring-header">
+                    <h2>📊 Monitoring en temps réel</h2>
+                    <div class="monitoring-controls">
+                        <button class="btn-icon" onclick="toggleAutoResfresh()" id="autoRefreshBtn" title="Auto-Refresh">▶️</button>
+                        <button class="btn-icon" onclick="resetCharts()" title="Réinitialiser">🔄</button>
+                        <select name="" id="refreshInterval" class="refresh-select" onchange="updateRefreshInterval()">
+                            <option value="1000">1s</option>
+                            <option value="2000" selected>2s</option>
+                            <option value="5000">5s</option>
+                            <option value="10000">10s</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Graphiques -->
+                <div class="charts-grid">
+
+                    <!-- CPU Chart -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>⚙️ CPU Usage</h3>
+                            <span class="chart-value" id="cpuLiveValue">0%</span>
+                        </div>
+                        <canvas id="cpuChart"></canvas>
+                    </div>
+
+                    <!-- RAM Chart -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>🏎️ RAM Usage</h3>
+                            <span class="chart-value" id="ramLiveValue">0%</span>
+                        </div>
+                        <canvas id="ramChart"></canvas>
+                    </div>
+
+                    <!-- DISK Chart -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>💽​ DISK Usage</h3>
+                            <span class="chart-value" id="diskLiveValue">0%</span>
+                        </div>
+                        <canvas id="diskChart"></canvas>
+                    </div>
+
+                    <!-- NETWORK Chart -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>🌍​ NETWORK Usage</h3>
+                            <span class="chart-value" id="networkLiveValue">0%</span>
+                        </div>
+                        <canvas id="networkChart"></canvas>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- Vue Commande -->
         <div id="commandsView">
@@ -109,7 +162,7 @@
                         <span class="cmd-desc">Service système actifs</span>
                     </div>
                     <div class="command-item" data-category="process" onclick="fillKillCommand">
-                        <span class="cmd-name">​❌​ KILL</span>
+                        <span class="cmd-name">​💀​ KILL</span>
                         <span class="cmd-desc">Arrêter un processus</span>
                     </div>
                     <!-- Sécurité -->
@@ -177,7 +230,7 @@
                         <span class="shortcut">Ctrl + ↵</span>
                     </button>
                 </form>
-                <div class="command-hinds" id="hinds"></div>
+                <div class="command-hinds" id="hints"></div>
             </div>
             <!-- Résultat avec timing -->
             {% if result %}
@@ -196,6 +249,16 @@
                     <pre id="resultContent">{{ result }}</pre>
                 </div>
             {% endif %}
+            <!-- Footer -->
+            <footer class="app-footer">
+                <div class="footer-content">
+                    <span>⚡ Check System</span>
+                    <span>|</span>
+                    <span id="systemTime"></span>
+                    <span>|</span>
+                    <span>Raccourcis: <kbd>Ctrl + Enter</kbd> Executer • <kbd>Ctrl + k</kbd> Effacer • <kbd>↑↓</kbd> Historique </span>
+                </div>
+            </footer>
         </div>
         
     </div>

@@ -23,6 +23,7 @@ def get_live_monitoring_data() -> dict:
         "ram_total": mem.total,
         "ram_used": mem.used,
         "ram_available": mem.available,
+        "disk": disk.percent,
         "disk_total": disk.total,
         "disk_used": disk.used,
         "disk_free": disk.free,

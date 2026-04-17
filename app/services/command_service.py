@@ -1,6 +1,7 @@
 from ..commands.registery import PREFIX_COMMAND, STATIC_COMMAND, help_command
 
 def execute_command(cmd: str) ->str:
+    cmd = cmd.lower();
     try:
         if cmd in ("help", "?"):
             return help_command()
